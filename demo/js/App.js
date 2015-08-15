@@ -23361,7 +23361,7 @@ var ChatBoxCulture = React.createClass({displayName: "ChatBoxCulture",
                  onClick: this.toggle})
           ), 
           React.createElement("div", {className: "chat-box__content"}, 
-            React.createElement(ChatPaneCulture, {thread: this.state.thread, focus: this.state.active || this.state.unread || this.state.minimized})
+            React.createElement(ChatPaneCulture, {thread: this.state.thread, focus: this.state.active})
           )
         )
     );
@@ -23472,12 +23472,12 @@ var ChatPaneCulture = React.createClass({displayName: "ChatPaneCulture",
       React.findDOMNode(this.refs.input).focus();
   },
 
-  componentDidUpdate: function(prevProps, prevState) {
-    if(this.props.focus) {
-      var thread = React.findDOMNode(this.refs.thread);
-      thread.scrollTop = thread.scrollHeight;
+  componentDidUpdate: function() {
+    var thread = React.findDOMNode(this.refs.thread);
+    thread.scrollTop = thread.scrollHeight;
+
+    if(this.props.focus)
       React.findDOMNode(this.refs.input).focus();
-    }
   },
 
   onNewMessage: function() {
