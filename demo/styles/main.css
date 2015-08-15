@@ -1,0 +1,398 @@
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+menu {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #f5f5f5;
+  color: #4d4d4d;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight: 300;
+}
+
+button {
+  border: none;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.chat-box {
+  display: inline-block;
+  background-color: #fff;
+  width: 220px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+}
+
+.chat-box:first-child {
+  margin: 0 10px 0 5px;
+}
+
+.chat-box.active .chat-box__header {
+  background-color: #6d84b4;
+  color: white;
+}
+
+.chat-box.unread .chat-box__header {
+  background-color: #6b90da;
+  color: white;
+  -webkit-animation: unread-pulsate 3s infinite linear;
+}
+
+.chat-box__header {
+  background: #6b90da;
+  color: white;
+  padding: 0 5px 0 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.chat-box__header strong {
+  max-width: calc(100% - 40px);
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-box__image {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.chat-box.minimized .chat-box__content {
+  display: none;
+}
+
+.chat-box.minimized .chat-box__minimize::before {
+  display: block;
+  content: ' ';
+  border: 3px solid white;
+  height: 4px;
+  margin: 0 3px;
+  margin-top: 10px;
+}
+
+.chat-box__content {
+  height: 300px;
+  display: block;
+}
+
+.chat-box__content .chat-pane {
+  position: relative;
+  padding: 0;
+}
+
+.chat-box__content .chat-pane__thread {
+  position: absolute;
+  top: 0;
+  bottom: 50px;
+  height: auto;
+  overflow: auto;
+  padding-top: 10px;
+}
+
+.chat-box__content .chat-pane__username {
+  top: 5px;
+  left: 35px;
+}
+
+.chat-box__content .chat-pane__img {
+  top: 5px;
+  left: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.chat-box__content .chat-pane__img--entry-img {
+  display: none;
+}
+
+.chat-box__content .chat-pane__messages {
+  padding: 10px;
+  top: 17px;
+  left: 0;
+  bottom: 0;
+  overflow: visible;
+}
+
+.chat-box__content .chat-pane__entry-reply {
+  margin-left: 10px;
+  height: 30px;
+  padding: 4px;
+  width: calc(100% - 20px);
+}
+
+.chat-box__close {
+  float: right;
+  cursor: pointer;
+}
+
+.chat-box__minimize {
+  position: relative;
+  float: right;
+  display: inline-block;
+  height: 100%;
+  width: 17px;
+}
+
+.chat-box__minimize::before {
+  display: block;
+  content: ' ';
+  border-bottom: 3px solid white;
+  height: 16px;
+  margin: 0 4px;
+}
+.chat-pane {
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  left: 0;
+}
+
+.chat-pane__thread {
+  display: block;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-pane__img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+}
+
+.chat-pane__img--entry-img {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+
+.chat-pane__messages {
+  position: absolute;
+  display: block;
+  left: 60px;
+  right: 0;
+  top: 35px;
+  bottom: 100px;
+  overflow: auto;
+}
+
+.chat-pane__username {
+  display: block;
+  position: absolute;
+  left: 60px;
+  margin-bottom: 10px;
+}
+
+.chat-pane__message {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.chat-pane__entry {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #efefef;
+  border-top: 1px solid #ddd;
+}
+
+.chat-pane__entry-reply {
+  display: block;
+  margin: 10px;
+  border: 1px solid #aaa;
+  padding: 10px;
+  background: #fff;
+  margin-left: 60px;
+  width: calc(100% - 70px);
+  height: 60px;
+  overflow: auto;
+}
+.menu {
+  position: relative;
+  height: 60px;
+  background: #3a5795;
+  color: white;
+  padding: 10px;
+  line-height: 40px;
+}
+
+.menu__heading {
+  font-weight: 300;
+  display: inline;
+}
+
+.menu__button {
+  background: none;
+  color: #fff;
+  float: right;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #fff;
+}
+
+.menu__button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu__button:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.mother-pane {
+  position: absolute;
+  top: 60px;
+  background: white;
+  width: 100%;
+  bottom: 0;
+}
+
+.mother-pane .chat-pane {
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: calc(100% - 280px);
+  left: 280px;
+  border-left: 1px solid #ccc;
+}
+.root {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.root__chat-boxes {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 100%;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  align-items: flex-end;
+  z-index: 1;
+}
+.thread-preview {
+  display: block;
+  padding: 5px;
+  height: 60px;
+  color: #4d4d4d;
+  background: white;
+  line-height: 140%;
+}
+
+.thread-preview.active {
+  background-color: #6d84b4;
+  color: white;
+}
+
+.thread-preview.unread {
+  background-color: #6b90da;
+  color: white;
+  -webkit-animation: unread-pulsate 3s infinite linear;
+}
+
+.thread-preview__img {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.thread-preview__name {
+  position: absolute;
+  display: block;
+  height: 60px;
+  top: 5px;
+  left: 60px;
+  width: calc(100% - 60px);
+  text-overflow: ellipsis;
+}
+
+.thread-preview__last-message {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  display: block;
+}
+
+@-webkit-keyframes unread-pulsate {
+  0% {
+    background-color: #8bb0fa;
+  }
+
+  50% {
+    background-color: #6b90da;
+  }
+
+  100% {
+    background-color: #8bb0fa;
+  }
+}
+.threads-popover {
+  position: absolute;
+  right: 0px;
+  top: 60px;
+  height: 400px;
+  width: 280px;
+  display: block;
+  background: white;
+  z-index: 3;
+  -webkit-transform: translateX(100%);
+  -webkit-transition: 0.3s;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+.threads-popover.visible {
+  -webkit-transform: translateX(0%);
+}
+.thread-list {
+  position: absolute;
+  height: 100%;
+  display: block;
+  top: 0;
+  background: white;
+  width: 280px;
+  bottom: 0;
+  padding: 10px;
+  overflow: auto;
+}
